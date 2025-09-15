@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, memo } from "react";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
-function TagList({ title, tags }) {
+// Added proper TypeScript typing for TagList props
+const TagList = memo(function TagList({ title, tags }: { title: string; tags: string[] }) {
   return (
     <div className="mt-8 px-6 max-w-5xl mx-auto">
       <div className="text-white text-lg font-semibold mb-4">{title}</div>
@@ -21,14 +22,15 @@ function TagList({ title, tags }) {
       </div>
     </div>
   );
-}
+});
 
 // Renamed BoxArea97 to HeroSection for clarity
 function HeroSection() {
-  const onSearch = (search: string) => {
+  // Memoized onSearch function to prevent unnecessary re-renders
+  const onSearch = useCallback((search: string) => {
     console.log(search);
     // implementing the search logic is not required for this task
-  };
+  }, []);
 
   return (
     <div className="relative w-full max-w-5xl mx-auto rounded-xl overflow-hidden mt-8">

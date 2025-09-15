@@ -97,3 +97,48 @@
 - Issue: Advanced components like calendar, carousel, chart, data tables were unused for this dictionary search interface.
 - Fix: Cleaned up all complex components that don't align with the simple search-focused design.
 
+### TagList Component (Line 9-23)
+- Issue: TagList component styling didn't match the design specifications for spacing and badge appearance.
+- Fix: Updated container margin from `mt-8` to `mt-12` for better vertical spacing and increased title margin-bottom from `mb-4` to `mb-6`.
+- Issue: Badge components had inconsistent styling with basic gray background and small padding.
+- Fix: Enhanced badge styling with `bg-gray-700`, improved hover state `hover:bg-gray-600`, better padding `px-4 py-2`, and refined border radius `rounded-md` for cleaner appearance.
+
+### Header Component(Line 94-111)
+- Issue: Header layout, logo, and search input did not match design.
+- Fixes:
+  - Reduced header height (`py-3`) for compact look.
+  - Logo size (`w-3.5 h-3.5`) made smaller.
+  - Font size (`text-base`) matches design typography.
+  - Search input: `rounded-lg`, `border border-gray-700`, `py-1.5`, `text-sm` for compact style.
+  - Search icon repositioned with `top-1/2 -translate-y-1/2`.
+  - Avatar (`w-8 h-8`) made circular and smaller for consistency.
+
+### Component Modularization
+- Issue: All components (Header, TagList, SearchBar, HeroSection) were defined in a single App.tsx file, making it difficult to maintain and violating separation of concerns.
+- Fix: Moved each component to its own file in `src/components/` directory:
+  - `Header.tsx` - Header component with logo, search, and avatar
+  - `TagList.tsx` - Tag list component with memo optimization  
+  - `SearchBar.tsx` - Search bar component with proper TypeScript interface
+  - `HeroSection.tsx` - Hero section component that imports and uses SearchBar
+- Issue: App.tsx was over 150 lines with mixed concerns and component definitions.
+- Fix: Simplified App.tsx to focus only on main app logic and layout, reducing complexity and improving readability.
+
+### Prop Drilling Elimination
+- Issue: Tags data was being passed down from App component to TagList components as props, creating unnecessary coupling and prop drilling.
+- Fix: Implemented React Context pattern with `TagsContext` and `useTags` hook:
+  - Created `src/contexts/TagsContext.tsx` with TagsProvider component
+  - Created `src/hooks/useTags.ts` custom hook for consuming context
+  - Updated TagList components to use context instead of props
+  - Wrapped App components with TagsProvider to provide tags data at top level
+
+### Header Responsive Design Issues
+- Issue: Header layout breaks on mobile/smaller screens with logo, brand name, search input, and avatar elements cramped together without proper responsive behavior.
+- Fix: Implemented responsive design with:
+  - Hide search input on mobile screens using `hidden md:block`
+  - Added mobile-only search icon button with proper touch target size
+  - Reduced padding on mobile (`px-4 md:px-6`) for better space utilization
+  - Adjusted brand name font size for mobile (`text-sm md:text-base`)
+  - Reduced gap between elements on mobile (`gap-2 md:gap-4`)
+  - Set search input width constraints (`w-40 lg:w-48`) to prevent overflow
+  - Ensured touch targets meet accessibility standards with adequate padding
+

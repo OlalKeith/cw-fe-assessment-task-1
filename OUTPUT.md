@@ -1,16 +1,3 @@
-[Example output - you should start from scratch]
-
-## Changes Made
-
-###[Component Name]
-
-1. useEffect in line 37
-   - Issue: useEffect missing dependencies causing stale state
-   - Fix: Added required dependencies to useEffect array
-2. Accessibility issue with the search icon line 98
-   - Issue: search icon is not accessible
-   - Fix: Added search icon to the input field
-
 ## Setup 
 - Issue: Local repository was still linked to the original CloudFactory repo, causing permission errors when pushing.
 - Fix: Changed the remote origin to my GitHub repository and pushed changes to the development branch.

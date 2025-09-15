@@ -23,7 +23,8 @@ function TagList({ title, tags }) {
   );
 }
 
-function BoxArea97() {
+// Renamed BoxArea97 to HeroSection for clarity
+function HeroSection() {
   const onSearch = (search: string) => {
     console.log(search);
     // implementing the search logic is not required for this task
@@ -31,18 +32,19 @@ function BoxArea97() {
 
   return (
     <div className="relative w-full max-w-5xl mx-auto rounded-xl overflow-hidden mt-8">
-      <img src="/task1/hero-bg.png" className="w-full h-96 object-cover" />
+        {/* Added alt text for accessibility */}
+      <img src="/task1/hero-bg.png" className="w-full h-96 object-cover" alt="Hero background" />
       <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center text-center px-4">
         <h1 className="text-3xl md:text-5xl font-bold text-white">
           Search for words, phrases and meanings
         </h1>
-        <BoxArea108 initialValue="" onSearch={onSearch} />
+        <SearchBar initialValue="" onSearch={onSearch} />
       </div>
     </div>
   );
 }
-
-function BoxArea108({
+// Renamed BoxArea108 to SearchBar for clarity
+function SearchBar({
   initialValue,
   onSearch,
 }: {
@@ -61,13 +63,16 @@ function BoxArea108({
 
   return (
     <div className="flex items-center bg-black px-4 py-2 rounded-full w-full max-w-xl mt-6 shadow-lg">
-      <Search className="text-gray-400 mr-3" />
+      {/* Added aria-label for accessibility */}
+      <Search className="text-gray-400 mr-3" aria-label="Search icon" />
+      {/* Added aria-label for accessibility */}
       <Input
         value={innerValue}
         onChange={(e) => setInnerValue(e.target.value)}
         type="text"
         placeholder="Type to search..."
         className="flex-1 bg-transparent border-none text-white placeholder:text-gray-400 focus:ring-0"
+        aria-label="Search input"
       />
       <Button className="bg-blue-600 hover:bg-blue-700 text-white ml-4">
         Search
@@ -78,10 +83,11 @@ function BoxArea108({
 
 function Header() {
   return (
+    // Changed brand name to match design
     <header className="flex items-center justify-between px-6 py-4 bg-black border-b border-gray-800">
       <div className="flex items-center gap-2">
-        <img src="/task1/logo.png" alt="Logo" className="w-10 h-10" />
-        <div className="text-white font-semibold text-lg">Wortionary</div>
+        <img src="/task1/logo.png" alt="Worctionary logo" className="w-10 h-10" />
+        <div className="text-white font-semibold text-lg">Worctionary</div>
       </div>
 
       <div className="flex items-center gap-4">
@@ -89,14 +95,17 @@ function Header() {
           <span>
             <span>
               <span className="absolute left-3 top-2.5">
-                <Search className="text-gray-400 text-sm" />
+                <Search className="text-gray-400 text-sm" aria-label="Search icon" />
               </span>
             </span>
           </span>
+            {/* Added aria-label for accessibility */}
           <Input
             type="text"
-            value="search"
+            value=""
+            placeholder="Search..."
             className="pl-9 bg-gray-800 text-white border-none focus:ring-0 rounded-full"
+            aria-label="Header search input"
           />
         </div>
         <Avatar style={{ width: "32px", height: "32px" }}>
@@ -109,7 +118,7 @@ function Header() {
 }
 
 export default function App() {
-  const [tags, setTags] = useState([
+  const [tags] = useState([
     "NFT",
     "Metaverse",
     "Sustainable",
@@ -121,7 +130,7 @@ export default function App() {
   return (
     <main className="bg-black min-h-screen text-white">
       <Header />
-      <BoxArea97 />
+      <HeroSection />  {/* Updated to use renamed HeroSection */}
       <TagList title="Trending" tags={tags} />
       <TagList title="For you" tags={tags} />
     </main>

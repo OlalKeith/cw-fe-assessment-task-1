@@ -11,6 +11,10 @@
    - Issue: search icon is not accessible
    - Fix: Added search icon to the input field
 
+## Setup 
+- Issue: Local repository was still linked to the original CloudFactory repo, causing permission errors when pushing.
+- Fix: Changed the remote origin to my GitHub repository and pushed changes to the development branch.
+
 ## Design Review Note
 
 - **Layout & Structure:**  
@@ -21,6 +25,8 @@
 - **Typography:**  
   - Issue: The main heading ("Search for words, phrases and meanings") in the design features refined letter-spacing. The current heading appears more condensed with tighter character spacing.
   - Fix: Adjusted the letter-spacing and font properties of the heading to better match the design’s typography.
+  - Issue: The brand name is inconsistently rendered as "Wortionary" instead of "Worctionary".
+  - Fix: use "Worctionary" for consistent branding.
 
 
 - **Search Input Styling:**  
@@ -49,6 +55,25 @@
 - **CSS:**  
   - Issue: Noted mismatches in spacing values, color codes, typography (line-height, letter-spacing), and inconsistent use of CSS.
   - Fix: Standardized CSS values and ensured consistent custom properties throughout the codebase.
+
+- **Mobile Header Layout Failure:**
+   - Issue: The responsive header isn't properly accommodating both the brand name and search functionality
+   - Fix: Ensured interactive elements meet mobile accessibility standards
+
+
+### App.tsx
+- Issue: Non-descriptive function names (BoxArea97, BoxArea108).
+- Fix: Renamed to HeroSection and SearchBar for clarity.
+- Issue: Brand name inconsistency (Wortionary).
+- Fix: Changed to Worctionary to match design.
+- Issue: Missing accessibility attributes (alt, aria-label).
+- Fix: Added alt text and aria-labels to images and icons.
+
+### index.html
+Issue: Title uses "Wortionary" instead of the correct brand name.
+Fix: Changed title to "Worctionary" for brand consistency.
+Issue: Missing accessibility meta tags.
+Fix: Added description, for better accessibility.
 
 ### [Another Component Name]
 
